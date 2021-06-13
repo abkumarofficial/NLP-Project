@@ -1,13 +1,13 @@
-const dotenv = require('dotenv');
-dotenv.config();
 var path = require('path')
 const express = require('express')
 const mockAPIResponse = require('./mockAPI.js')
+const { config } = require('dotenv')
 
-var textapi = new meaningCloud({
-    application_key: `${process.env.API_KEY}`
-  });
+const dotenv = require('dotenv');
+dotenv.config({ path: "/home/abhikumar/gitWorkSpace/NLP-Project/.env" });
 
+const application_key = process.env.API_KEY
+console.log(`Your API key is ${process.env.API_KEY}`);
 const app = express()
 
 app.use(express.static('dist'))
