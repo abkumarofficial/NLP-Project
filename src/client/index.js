@@ -7,7 +7,12 @@ import './styles/footer.scss'
 import './styles/form.scss'
 import './styles/header.scss'
 
+export {
+    checkForName,
+    handleSubmit
+}
+
 console.log(checkForName);
 
-alert("I EXIST")
+alert("Client Index File")
 console.log("CHANGE!!");
