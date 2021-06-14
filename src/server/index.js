@@ -9,10 +9,6 @@ const dotenv = require('dotenv');
 dotenv.config({ path: "/home/abhikumar/gitWorkSpace/NLP-Project/.env" });
 
 const applicationKey = process.env.API_KEY
-console.log(`Your API key is ${process.env.API_KEY}`);
-
-// const baseURL = 'https://api.meaningcloud.com/sentiment-2.1?key='
-// let acutalURL = baseURL + applicationKey + '&of=json&txt=' + searchText + '&model=general&lang=en'
 
 const app = express()
 

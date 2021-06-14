@@ -1,11 +1,10 @@
 const getSentimentAnalysisData = async (url) => {
     const response = await fetch(url);
     try {
-        const allData = await response.json()
-        return allData;
-        console.log(allData);
+        const data = await response.json()
+        return data;
     } catch (error) {
-        console.log("ERROR in API call: ", error)
+        console.log("ERROR in fetching data ", error)
     }
 }
 

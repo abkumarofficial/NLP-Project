@@ -1,4 +1,3 @@
-// import { getKeyData } from './getKey';
 import { getSentimentAnalysisData } from './sentimentAnalysis';
 
 const handleSubmit = async (event) => {
@@ -12,7 +11,7 @@ const handleSubmit = async (event) => {
     // getting sentiment Analysis data
     const sentimentAnalysisData = await Client.getSentimentAnalysisData(`https://api.meaningcloud.com/sentiment-2.1?key=${key}${textURI}&model=general&lang=en`)
     // showing in view
-    document.getElementById('agreement').innerHTML = `<div>Agreement: ${sentimentAnalysisData['agreement']}</div>`;
+    document.getElementById('agreement').innerHTML = `<strong>Form Results:</strong><div>Agreement: ${sentimentAnalysisData['agreement']}</div>`;
     document.getElementById('confidence').innerHTML = `<div>Confidence: ${sentimentAnalysisData['confidence']}</div>`;
     document.getElementById('irony').innerHTML = `<div>Irony: ${sentimentAnalysisData['irony']}</div>`;
     document.getElementById('score').innerHTML = `<div>Score Tag: ${sentimentAnalysisData['score_tag']}</div>`;
@@ -30,5 +29,4 @@ const getKeyData = async () => {
 }
 
 export { getSentimentAnalysisData }
-// export { getKeyData }
 export { handleSubmit, getKeyData }
