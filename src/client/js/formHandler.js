@@ -1,4 +1,4 @@
-import { getKeyData } from './getKey';
+// import { getKeyData } from './getKey';
 import { getSentimentAnalysisData } from './sentimentAnalysis';
 
 const handleSubmit = async (event) => {
@@ -8,14 +8,27 @@ const handleSubmit = async (event) => {
     let formText = document.getElementById('name').value
     const textURI = '&of=json&txt=' + encodeURI(formText)
     // getting key from the server
-    const key = await Client.getKey()
+    const key = await getKeyData()
     // getting sentiment Analysis data
-    const sentimentAnalysisData = await Client.getMeaning(`https://api.meaningcloud.com/sentiment-2.1?key=${key}${textURI}&model=general&lang=en`)
+    const sentimentAnalysisData = await Client.getSentimentAnalysisData(`https://api.meaningcloud.com/sentiment-2.1?key=${key}${textURI}&model=general&lang=en`)
     // showing in view
-    document.getElementById('results').innerHTML = sentimentAnalysisData.status.msg;
+    document.getElementById('agreement').innerHTML = `<div>Agreement: ${sentimentAnalysisData['agreement']}</div>`;
+    document.getElementById('confidence').innerHTML = `<div>Confidence: ${sentimentAnalysisData['confidence']}</div>`;
+    document.getElementById('irony').innerHTML = `<div>Irony: ${sentimentAnalysisData['irony']}</div>`;
+    document.getElementById('score').innerHTML = `<div>Score Tag: ${sentimentAnalysisData['score_tag']}</div>`;
 }
 
 
+const getKeyData = async () => {
+    const gotKey = await fetch('http://localhost:8081/needkey');
+    try {
+        const key = await gotKey.text()
+        return key
+    } catch (error) {
+        console.log("Error while getting key:", error)
+    }
+}
+
 export { getSentimentAnalysisData }
-export { getKeyData }
-export { handleSubmit }
+// export { getKeyData }
+export { handleSubmit, getKeyData }

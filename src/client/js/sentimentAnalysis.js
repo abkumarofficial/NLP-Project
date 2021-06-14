@@ -1,11 +1,11 @@
 const getSentimentAnalysisData = async (url) => {
     const response = await fetch(url);
     try {
-        const response = await response.json()
-        console.log("getSentimentAnalysisData response", response);
-        return response;
+        const allData = await response.json()
+        return allData;
+        console.log(allData);
     } catch (error) {
-        console.log("error while getting sentiment Analysis Data: ", error)
+        console.log("ERROR in API call: ", error)
     }
 }
 

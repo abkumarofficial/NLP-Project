@@ -1,6 +1,6 @@
 // import { checkForName } from './js/nameChecker'
 import { handleSubmit } from './js/formHandler'
-import { getKeyData } from './js/getKey';
+// import { getKeyData } from './js/getKey';
 import { getSentimentAnalysisData } from './js/sentimentAnalysis';
 
 import './styles/resets.scss'
@@ -11,12 +11,11 @@ import './styles/header.scss'
 
 export {
     // checkForName,
-    getKeyData,
+    // getKeyData,
     getSentimentAnalysisData,
     handleSubmit
 }
 
 // console.log(checkForName);
 
-alert("Client Index File")
 console.log("CHANGE!!");
