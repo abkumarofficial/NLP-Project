@@ -29,7 +29,7 @@ The goal of this project is to:
 ## Prerequisite
 This project should run on a local server. Node and Express should be installed on the local machine. Required packages listed in `packages.json`.
 	
-Create API credentials on [MeaningCloud.com](https://docs.aylien.com/textapi/endpoints/#api-endpoints), then insert API KEY into the `.env` file.
+Create API credentials on [MeaningCloud.com](https://www.meaningcloud.com/developer/sentiment-analysis), then insert API KEY into the `.env` file.
 
 ```
 API_KEY=**************************

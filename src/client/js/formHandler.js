@@ -5,21 +5,25 @@ const handleSubmit = async (event) => {
 
     // check what text was put into the form field
     let formText = document.getElementById('name').value
-    const textURI = '&of=json&txt=' + encodeURI(formText)
-    // getting key from the server
-    const key = await getKeyData()
-    // getting sentiment Analysis data
-    const sentimentAnalysisData = await Client.getSentimentAnalysisData(`https://api.meaningcloud.com/sentiment-2.1?key=${key}${textURI}&model=general&lang=en`)
-    // showing in view
-    document.getElementById('agreement').innerHTML = `<strong>Form Results:</strong><div>Agreement: ${sentimentAnalysisData['agreement']}</div>`;
-    document.getElementById('confidence').innerHTML = `<div>Confidence: ${sentimentAnalysisData['confidence']}</div>`;
-    document.getElementById('irony').innerHTML = `<div>Irony: ${sentimentAnalysisData['irony']}</div>`;
-    document.getElementById('score').innerHTML = `<div>Score Tag: ${sentimentAnalysisData['score_tag']}</div>`;
+    if(Client.checkForURL(formText)) {
+        const textURI = '&of=json&txt=' + encodeURI(formText)
+        // getting key from the server
+        const key = await getKeyData()
+        // getting sentiment Analysis data
+        const sentimentAnalysisData = await Client.getSentimentAnalysisData(`https://api.meaningcloud.com/sentiment-2.1?key=${key}${textURI}&model=general&lang=en`)
+        // showing in view
+        document.getElementById('agreement').innerHTML = `<strong>Form Results:</strong><div>Agreement: ${sentimentAnalysisData['agreement']}</div>`;
+        document.getElementById('confidence').innerHTML = `<div>Confidence: ${sentimentAnalysisData['confidence']}</div>`;
+        document.getElementById('irony').innerHTML = `<div>Irony: ${sentimentAnalysisData['irony']}</div>`;
+        document.getElementById('score').innerHTML = `<div>Score Tag: ${sentimentAnalysisData['score_tag']}</div>`;
+    } else {
+        alert("Invalid URL entered, please enter valid URL");
+    }
 }
 
 
 const getKeyData = async () => {
-    const gotKey = await fetch('http://localhost:8081/needkey');
+    const gotKey = await fetch('http://localhost:3000/needkey');
     try {
         const key = await gotKey.text()
         return key
